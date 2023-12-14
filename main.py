@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-from skimage.metrics import structural_similarity as compare_ssim
+
 
 def text_to_binary(text):
     binary_message = ''.join(format(ord(char), '08b') for char in text)
@@ -52,8 +52,8 @@ def visualize_difference(original_image_path, stego_image_path):
     # Create a difference image
     diff_img = Image.fromarray(np.abs(np.array(original_img) - np.array(stego_img)).astype(np.uint8))
     diff_img.save('difference_image.png')
+    print("Difference image saved. Check 'difference_image.png'.")
 
-    # print("Difference image saved. Check 'difference_image.png'.")
 
 def calculate_psnr(original_img, distorted_img):
     mse = np.mean((original_img - distorted_img) ** 2)
